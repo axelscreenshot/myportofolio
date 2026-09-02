@@ -47,6 +47,11 @@ h1, .brand {
     font-weight: 700;
     color: var(--ink);
     text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.brand:hover {
+    color: var(--accent);
 }
 
 .site-header nav {
@@ -58,6 +63,10 @@ h1, .brand {
     color: var(--ink);
     text-decoration: none;
     font-size: 0.95rem;
+}
+
+.site-header nav a:hover {
+    color: var(--accent);
 }
 
 .hero {
