@@ -9,13 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/f2c7386d96.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="site-header">
         <div class="container">
             <a href="#profile" class="brand">Axel</a>
             <nav>
-                <!-- <a href="#achievements">Achievements</a> -->
+                <a href="#skills">Skills</a>
                 <a href="#profile">Profile</a>
             </nav>
         </div>
@@ -30,7 +31,7 @@
                 </div>
                 <div class="hero-photo">
                     <div class="photo-block"></div>
-                    <img class="avatar" src="/static/img/self.jpg" alt="Photo of Axel" title="Yo">
+                    <img class="avatar" src="/static/img/self-duotone.jpg" alt="Photo of Myself" title="Bro-mo">
                 </div>
                 <div class="hero-details">
                     <p class="bio">
@@ -48,29 +49,43 @@
                     </dl>
                     <div class="social-links">
                         <!-- target="_blank" means opening in a new tab -->
-                        <a href="https://github.com/axelscreenshot/ " class="social-link" target="_blank">GitHub</a>
-                        <a href="https://www.linkedin.com/in/axel-ss/" class="social-link" target="_blank">LinkedIn</a>
-                        <a href="mailto:axel.sebastian@ui.ac.id" class="social-link">Email</a>
+                        <a href="https://github.com/axelscreenshot/ " class="social-link" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/axel-ss/" class="social-link" target="_blank"><i class="fa-brands fa-square-linkedin"></i> LinkedIn</a>
+                        <a href="mailto:axel.sebastian@ui.ac.id" class="social-link"><i class="fa-solid fa-envelope"></i> Email</a>
                     </div>
                 </div>
             </div>
         </section>
-<!-- 
-        <section class="hero" id="achievements">
-            <div class="container hero-grid">
-                <div class="hero-identity">
-                    <h1>Achievements</h1>
+
+        <section class="carousel" id="skills">
+            <div class="container carousel-flexbox">
+                <div class="carousel-identity">
+                    <p class="carousel-kicker">My Skills</p>
                 </div>
-                <div class="hero-details">
-                    <article class="bio">
-                        Achievement 1
-                    </article>
-                    <article class="bio">
-                        Achievement 2
-                    </article>
+                <div class="carousel-scroller">
+                    <ul>
+                        <li><span class="skill"><i class="fa-brands fa-python"></i> Python</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-java"></i> Java</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-html5"></i> HTML</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-css3-alt"></i> CSS</span></li>
+                        <li><span class="skill"><i class="fa-solid fa-file-powerpoint"></i> PowerPoint</span></li>
+                        <li><span class="skill"><i class="fa-solid fa-file-word"></i> Word</span></li>
+                        <li><span class="skill"><i class="fa-solid fa-palette"></i> Canva</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-youtube"></i> YouTube</span></li>
+                    </ul>
+                    <ul aria-hidden="true">
+                        <li><span class="skill"><i class="fa-brands fa-python"></i> Python</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-java"></i> Java</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-html5"></i> HTML</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-css3-alt"></i> CSS</span></li>
+                        <li><span class="skill"><i class="fa-solid fa-file-powerpoint"></i> PowerPoint</span></li>
+                        <li><span class="skill"><i class="fa-solid fa-file-word"></i> Word</span></li>
+                        <li><span class="skill"><i class="fa-solid fa-palette"></i> Canva</span></li>
+                        <li><span class="skill"><i class="fa-brands fa-youtube"></i> YouTube</span></li>
+                    </ul>
                 </div>
             </div>
-        </section> -->
+        </section>
     </main>
 
     <footer class="site-footer">

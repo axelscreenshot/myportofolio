@@ -4,13 +4,23 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
-    --ink: #1c1917;
+    /* --ink: #1c1917;
     --paper: #faf6f0;
     --accent: #d95d39;
     --accent-dark: #a8442a;
     --line: #e3d9c9;
-    --text-muted: #6b6459;
+    --text-muted: #6b6459; */
+    --ink: #E1EFE6;
+    --ink-muted: #AEB7B3;
+    --paper: #01071b;
+    --paper-dark: #000411;
+    --accent: #a3b0a7;
+    --accent-dark: #808f85;
     --radius: 4px;
 }
 
@@ -19,6 +29,7 @@ body {
     color: var(--ink);
     background-color: var(--paper);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 h1, .brand {
@@ -31,8 +42,13 @@ h1, .brand {
     padding: 0 1.5rem;
 }
 
+/* header */
 .site-header {
-    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    z-index: 1;
 }
 
 .site-header .container {
@@ -63,12 +79,14 @@ h1, .brand {
     color: var(--ink);
     text-decoration: none;
     font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
 .site-header nav a:hover {
     color: var(--accent);
 }
 
+/* hero */
 .hero {
     padding: 4.5rem 0 5rem;
 }
@@ -105,7 +123,7 @@ h1, .brand {
 }
 
 .bio {
-    color: var(--text-muted);
+    color: var(--ink-muted);
     max-width: 480px;
     margin-bottom: 1.5rem;
 }
@@ -120,7 +138,7 @@ h1, .brand {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--text-muted);
+    color: var(--ink-muted);
     margin-bottom: 0.15rem;
 }
 
@@ -128,6 +146,7 @@ h1, .brand {
     font-weight: 600;
 }
 
+/* socials */
 .social-links {
     display: flex;
     gap: 0.5rem;
@@ -143,13 +162,15 @@ h1, .brand {
     background-color: var(--ink);
     border-radius: var(--radius);
     padding: 0.5rem 1.1rem;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .social-link:hover {
     background-color: var(--accent);
+    color: var(--ink);
 }
 
+/* photo */
 .hero-photo {
     grid-area: photo;
     align-self: center;
@@ -158,33 +179,103 @@ h1, .brand {
 
 .photo-block {
     position: absolute;
-    top: 1.25rem;
     left: 1.25rem;
     width: 100%;
     height: 100%;
     background-color: var(--accent);
     border-radius: var(--radius);
-    z-index: 0;
+    z-index: -2;
 }
 
 .avatar {
     position: relative;
-    z-index: 1;
+    z-index: -1;
     display: block;
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: var(--radius);
-    border: 3px solid var(--ink);
+    border: var(--radius) solid var(--ink);
 }
 
+/* carousel */
+.carousel {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    padding: 4.5rem 0 5rem;
+    font-size: 15px;
+    --gap: 20px;
+    gap: var(--gap);
+}
+
+.carousel-flexbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-identity {
+    grid-area: carousel-identity;
+}
+
+.carousel-kicker {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.carousel-scroller {
+    grid-area: carousel-scroller;
+    display: flex;
+    overflow: hidden;
+    gap: var(--gap);
+    background-color: var(--paper-dark);
+    border-radius: var(--radius);
+}
+
+.carousel ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    flex-shrink: 0;
+    min-width: 100%;
+    gap: var(--gap);
+    animation: scroll 20s linear infinite;
+}
+
+.carousel-scroller:hover ul {
+    animation-play-state: paused;
+}
+
+.carousel .skill {
+    font-weight: bold;
+    margin-inline: var(--gap);
+    color: var(--ink);
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes scroll {
+    to {
+        transform: translateX(calc(-100% - var(--gap)));
+    }
+}
+
+/* footer */
 .site-footer {
     padding: 1.5rem;
-    color: var(--text-muted);
+    color: var(--ink-muted);
     font-size: 0.85rem;
-    border-top: 1px solid var(--line);
+    background-color: var(--paper-dark);
 }
 
+/* if width <= 600px */
 @media (max-width: 600px) {
     .hero-grid {
         grid-template-columns: 1fr;
@@ -201,4 +292,22 @@ h1, .brand {
     .social-links {
         justify-content: flex-start;
     }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: var(--radius);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--paper-dark); 
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: var(--accent-dark); 
+    border-radius: var(--radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent); 
 }
