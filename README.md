@@ -8,7 +8,7 @@ Kelas : PBP B
 ## Week 1
 Static Web with HTML5 and CSS3
 
-**Tidak menggunakan AI** \
+**-- Tidak menggunakan AI --** \
 Karena ini pertama kali saya membuat proyek serius menggunakan HTML dan CSS, saya awalnya perlu mempelajari dari awal _mostly_ menggunakan W3Schools. Setelah cukup memahami kode yang telah ada dari tutorial, lalu saya coba kembangkan dengan kemampuan saya sendiri—seperti yang akan di bahas di bagian tugas—penuh dengan _trial-and-error_. Meskipun begitu, saya mengusahakan agar tidak menggunakan bantuan AI sama sekali untuk minggu pertama ini agar dapat lebih terlatih. Setelah semuanya berjalan dengan baik, hal terakhir yang dilakukan adalah _polishing_ web dengan detail-detail kecil. Untungnya, selain dalam memikirkan desain dan pengaturan _display_, kebebasan tugas minggu pertama ini membuat saya belum banyak mengalami masalah dan halangan yang benar-benar menghambat.
 
 
