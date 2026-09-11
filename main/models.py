@@ -15,12 +15,40 @@ class Experience(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     category = models.CharField(max_length=20, choices=EXPERIENCE_CHOICES, default='full-time')
-    thumbnail = models.URLField(blank=True, null=True)
+    thumbnail = models.URLField(blank=True, default="")
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True, null=True)
+
     def __str__(self):
         return self.title
     
     @property
     def is_ongoing(self):
         return self.ended_at is None
+
+    @property
+    def has_thumbnail(self):
+        return self.thumbnail != ""
+
+class Project(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    thumbnail = models.URLField(blank=True, default="")
+    view = models.URLField(blank=True, default="")
+    source = models.URLField(blank=True, default="")
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def has_thumbnail(self):
+        return self.thumbnail != ""
+
+    @property
+    def has_view(self):
+        return self.view != ""
+
+    @property
+    def has_source(self):
+        return self.source != ""

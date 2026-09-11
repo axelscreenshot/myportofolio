@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience - {{ name }}</title>
+    <title>Projects - {{ name }}</title>
     <link rel="icon" type="image/x-icon" href="/static/img/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,19 +25,16 @@
     </header>
 
     <main>
-        <section class="experience-section" id="experience">
+        <section class="projects-section" id="projects">
             <div class="container">
-                <div class="experience-identity">
-                    <p class="section-kicker">Perjalanan saya sejauh ini</p>
-                    <h1>Experience</h1>
+                <div class="projects-identity">
+                   <p class="section-kicker">Karya yang pernah saya buat</p>
+                    <h1>Projects</h1>
                 </div>
-                <div class="experience-grid">
-                    {% for experience in experience_list %}
-                        <article class="experience-card">
-                            <span class="experience-category">
-                                {{ experience.get_category_display }}
-                            </span>
-                            <h2>{{ experience.title }}</h2>
+                <div class="projects-grid">
+                    {% for project in project_list %}
+                        <article class="projects-card">
+                            <h2>{{ project.title }}</h2>
                             <div class="thumbnail-photo">
                                 {% if project.has_thumbnail %}
                                 <img class="thumbnail" src="{{ project.thumbnail }}" alt="Thumbnail of {{ project.title }}">
@@ -45,18 +42,26 @@
                                 <img class="thumbnail" src="/static/img/no-thumbnail.png" alt="Thumbnail unavailable">
                                 {% endif %}
                             </div>
-                            <p class="experience-description">
-                                {{ experience.description }}
+                            <p class="projects-description">
+                                {{ project.description }}
                             </p>
-                            {% if experience.is_ongoing %}
-                                <p class="experience-status">Sedang berlangsung</p>
-                            {% else %}
-                                <p class="experience-status">Selesai</p>
-                            {% endif %}
+                            <div class="project-links">
+                                {% if project.has_view %}
+                                    <a href="{{ project.view }}" class="view-link" target="_blank">View Project&ensp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                {% else %}
+                                    <div class="view-off">View Project&ensp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                                {% endif %}
+
+                                {% if project.has_source %}
+                                    <a href="{{ project.source }}" class="source-link" target="_blank">Source Code&ensp;<i class="fa-solid fa-code"></i></a>
+                                {% else %}
+                                    <div class="source-off">Source Code&ensp;<i class="fa-solid fa-code"></i></div>
+                                {% endif %}
+                            </div>
                         </article>
                     {% empty %}
                         <p class="empty-state">
-                            Belum ada pengalaman yang ditambahkan.
+                            Belum ada proyek yang ditambahkan.
                         </p>
                     {% endfor %}
                 </div>
