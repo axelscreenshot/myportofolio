@@ -12,10 +12,9 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 
-#####
-
 import os
 from dotenv import load_dotenv
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -23,7 +22,12 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "axel-sebastian-myportofolio.pws.cs.u
 
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 
-#####
+CSRF_TRUSTED_ORIGINS = [
+    "https://axel-sebastian-myportofolio.pws.cs.ui.ac.id",
+]
+
+CSRF_COOKIE_SECURE    = True
+SESSION_COOKIE_SECURE = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -94,8 +98,6 @@ WSGI_APPLICATION = 'portofolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-#####
-
 # Database configuration
 if PRODUCTION:
     DATABASES = {
@@ -119,14 +121,6 @@ else:
         }
     }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-#####
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
