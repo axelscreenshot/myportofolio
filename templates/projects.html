@@ -4,54 +4,55 @@
 {% endblock meta %}
 {% block content %}
     <main>
-        <section class="experience-section" id="projects">
+        <section class="goods-section" id="projects">
             <div class="container">
-                <p class="section-kicker">Karya yang pernah saya buat</p>
-                <div class="project-header">
+                <p class="goods-kicker">Karya yang pernah saya buat</p>
+                <div class="goods-header">
                     <h1>Projects</h1>
                     <a href="{% url 'main:create_project' %}"
-                       class="button project-add-button">
+                       class="button goods-add-button">
                         <span aria-hidden="true">+</span>
                         Tambah Proyek
                     </a>
                 </div>
                 <form method="get"
                       action="{% url 'main:show_projects' %}"
-                      class="project-search">
+                      class="goods-search">
                     <input type="search"
                            name="title"
                            value="{{ title_query }}"
                            placeholder="Nama proyek"
-                           class="project-search__input"
+                           class="goods-search__input"
                            aria-label="Cari berdasarkan nama proyek">
                     <button type="submit" class="button button-secondary">Cari</button>
                 </form>
-                <div class="experience-grid project-grid">
+                <div class="goods-grid">
                     {% for project in project_list %}
-                        <article class="experience-card">
+                        <article class="goods-card">
                             {% if project.has_thumbnail %}
                                 <img src="{{ project.thumbnail }}"
                                      alt="Thumbnail of {{ project.title }}"
-                                     class="project-thumbnail">
+                                     class="goods-thumbnail">
                             {% else %}
                                 <img src="/static/img/no-thumbnail.png"
                                      alt="No Thumbnail"
-                                     class="project-thumbnail">
+                                     class="goods-thumbnail">
                             {% endif %}
+                            
                             <h2>{{ project.title }}</h2>
-                            <p class="experience-description">{{ project.description }}</p>
-                            <div class="project-card-actions">
-                                <div class="project-actions">
+                            <p class="goods-description">{{ project.description }}</p>
+                            <div class="goods-card-actions">
+                                <div class="goods-actions">
                                     {% if project.has_view %}
-                                        <a title="View Project" href="{{ project.view }}" class="project-links" target="_blank">View Project</a>
+                                        <a title="View Project" href="{{ project.view }}" class="goods-links" target="_blank">View Project</a>
                                     {% else %}
-                                        <div class="project-links-off">View Project</div>
+                                        <div class="goods-links-off">View Project</div>
                                     {% endif %}
 
                                     {% if project.has_source %}
-                                        <a title="Source Code" href="{{ project.source }}" class="project-links" target="_blank">Source Code</a>
+                                        <a title="Source Code" href="{{ project.source }}" class="goods-links" target="_blank">Source Code</a>
                                     {% else %}
-                                        <div class="project-links-off">Source Code</div>
+                                        <div class="goods-links-off">Source Code</div>
                                     {% endif %}
 
                                     {% include "components/project_delete_modal.html" with project=project %}

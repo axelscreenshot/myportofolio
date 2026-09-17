@@ -6,6 +6,19 @@ Kelas : PBP B
 Website: https://axel-sebastian-myportofolio.pws.cs.ui.ac.id
 
 
+## Week 3
+Form & Data Delivery
+
+1. Jelaskan mengapa kita menggunakan ModelForm pada Django alih-alih membuat form HTML secara manual. Selain itu, jelaskan pula mengapa kita diwajibkan menambahkan {% csrf_token %} pada form tersebut!
+3. Jelaskan alur yang terjadi saat kamu menggunakan fungsi view untuk mengembalikan data portofoliomu dalam bentuk JSON. Mengapa kita perlu melakukan proses serialization pada model Django sebelum datanya dikembalikan?
+
+
+### Tugas 3
+1. ...
+2. JSON lebih disukai dibandingkan XML dalam pengembangan aplikasi web modern karena ukurannya yang lebih ringkas dan sangat mudah untuk di-_parse_ dan _generate_ oleh mesin. Namun, fiturnya yang paling mencolok yaitu berupa integrasinya yang sangat natural dengan JavaScript untuk _frontend_ (namanya sendiri JavaScript Object Notation).
+3. ...
+
+
 ## Week 2
 Implementasi Model-View-Template (MVT) pada Django
 
@@ -33,11 +46,12 @@ Karena ini pertama kali saya membuat proyek serius menggunakan HTML dan CSS, say
 
 
 ## Resources
-1. [Coolors](https://coolors.co/160c28-efcb68-e1efe6-aeb7b3-000411), for color palette
-2. [Canva](https://www.canva.com), for photo editing
-3. [W3Schools](https://www.w3schools.com)/tags; /cssref; /howto, for tutorials regarding frontend development
-4. [Font Awesome](https://fontawesome.com), for brand icons
-5. [Optimistic Web](www.youtube.com/@OptimisticWeb/), for css endless scroll
-6. [Stack Overflow](https://stackoverflow.com/questions), for other—more specific—needs
-7. [GeeksforGeeks](https://www.geeksforgeeks.org), for more theoretical questions
-8. [django Documentation](https://docs.djangoproject.com/en/6.1/), for details about models and making queries
+1. [Coolors](https://coolors.co/160c28-efcb68-e1efe6-aeb7b3-000411), color palette
+2. [Canva](https://www.canva.com), photo editing
+3. [W3Schools](https://www.w3schools.com)/tags; /cssref; /howto, general tutorials regarding frontend development
+4. [Font Awesome](https://fontawesome.com), brand icons
+5. [Optimistic Web](www.youtube.com/@OptimisticWeb/), css endless scroll
+6. [Stack Overflow](https://stackoverflow.com/questions), other—more specific—needs
+7. [GeeksforGeeks](https://www.geeksforgeeks.org), other more theoretical questions
+8. [django Documentation](https://docs.djangoproject.com/en/6.1/), details about models and making queries
+9. [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference), css selector customization

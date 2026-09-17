@@ -1,6 +1,6 @@
-from django.forms import ModelForm, TextInput, Textarea, URLInput
+from django.forms import ModelForm, TextInput, Textarea, URLInput, Select, ChoiceField
 
-from main.models import Project
+from main.models import Project, Experience
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -25,29 +25,79 @@ class ProjectForm(ModelForm):
         widgets = {
             "title": TextInput(
                 attrs={
-                    "placeholder": "My Project",
+                    "placeholder": "Example: My Project",
                     "maxlength": 255,
                 }
             ),
             "description": Textarea(
                 attrs={
-                    "placeholder": "New Project",
+                    "placeholder": "Example: My new project.",
                     "rows": 3,
                 }
             ),
             "thumbnail": URLInput(
                 attrs={
-                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
+                    "placeholder": "Example: https://drive.google.com/thumbnail?id=...&sz=w1000",
                 }
             ),
             "view": URLInput(
                 attrs={
-                    "placeholder": "https://my-project.com/",
+                    "placeholder": "Example: https://my-project.com/",
                 }
             ),
             "source": URLInput(
                 attrs={
-                    "placeholder": "https://github.com/username/my-project",
+                    "placeholder": "Example: https://github.com/username/my-project",
                 }
             ),
+        }
+
+class ExperienceForm(ModelForm):
+    class Meta:
+        model = Experience
+
+        fields = [
+            "title",
+            "description",
+            "category",
+            "thumbnail",
+            # "started_at",
+            # "ended_at",
+        ]
+
+        labels = {
+            "title": "Judul Pengalaman",
+            "description": "Deskripsi Pengalaman",
+            "category": "Kategori Pengalaman",
+            "thumbnail": "URL Thumbnail Pengalaman",
+            # "started_at": "Tanggal Memulai",
+            # "ended_at": "Tanggal Selesai",
+        }
+
+        widgets = {
+            "title": TextInput(
+                attrs={
+                    "placeholder": "Example: Role Title",
+                    "maxlength": 255,
+                }
+            ),
+            "description": Textarea(
+                attrs={
+                    "placeholder": "Example: My role as X at Y.",
+                    "rows": 3,
+                }
+            ),
+            "category": Select(
+                choices=Experience.EXPERIENCE_CHOICES,
+                attrs={
+                    "placeholder": "",
+                }
+            ),
+            "thumbnail": URLInput(
+                attrs={
+                    "placeholder": "Example: https://drive.google.com/thumbnail?id=...&sz=w1000",
+                }
+            ),
+            # "started_at"
+            # "ended_at"
         }

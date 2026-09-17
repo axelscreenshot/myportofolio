@@ -4,37 +4,66 @@
 {% endblock meta %}
 {% block content %}
     <main>
-        <section class="experience-section" id="experience">
+        <section class="goods-section" id="experience">
             <div class="container">
-                <div class="experience-identity">
-                    <p class="section-kicker">Perjalanan saya sejauh ini</p>
+                <p class="goods-kicker">Perjalanan saya sejauh ini</p>
+                <div class="goods-header">
                     <h1>Experience</h1>
+                    <a href="{% url 'main:create_experience' %}"
+                       class="button goods-add-button">
+                        <span aria-hidden="true">+</span>
+                        Tambah Pengalaman
+                    </a>
                 </div>
-                <div class="experience-grid">
+                <form method="get"
+                      action="{% url 'main:show_experience' %}"
+                      class="goods-search">
+                    <input type="search"
+                           name="title"
+                           value="{{ title_query }}"
+                           placeholder="Judul pengalaman"
+                           class="goods-search__input"
+                           aria-label="Cari berdasarkan judul pengalaman">
+                    <button type="submit" class="button button-secondary">Cari</button>
+                </form>
+                <div class="goods-grid">
                     {% for experience in experience_list %}
-                        <article class="experience-card">
+                        <article class="goods-card">
                             <span class="experience-category">
                                 {{ experience.get_category_display }}
                             </span>
-                            <h2>{{ experience.title }}</h2>
-                            {% if project.has_thumbnail %}
-                            <img class="project-thumbnail" src="{{ project.thumbnail }}" alt="Thumbnail of {{ project.title }}">
-                            {% else %}
-                            <img class="project-thumbnail" src="/static/img/no-thumbnail.png" alt="Thumbnail unavailable">
-                            {% endif %}
-                            <p class="experience-description">
-                                {{ experience.description }}
-                            </p>
+
                             {% if experience.is_ongoing %}
                                 <p class="experience-status">Sedang berlangsung</p>
                             {% else %}
                                 <p class="experience-status">Selesai</p>
                             {% endif %}
+
+                            {% if experience.has_thumbnail %}
+                                <img src="{{ experience.thumbnail }}"
+                                     alt="Thumbnail of {{ experience.title }}"
+                                     class="goods-thumbnail">
+                            {% else %}
+                                <img src="/static/img/no-thumbnail.png"
+                                     alt="No Thumbnail"
+                                     class="goods-thumbnail">
+                            {% endif %}
+
+                            <h2>{{ experience.title }}</h2>
+                            <p class="goods-description">{{ experience.description }}</p>
+                            <div class="goods-card-actions">
+                                <div class="goods-actions">
+                                    <!-- {% include "components/experience_update_modal.html" with experience=experience %} -->
+                                    {% include "components/experience_delete_modal.html" with experience=experience %}
+                                </div>
+                            </div>
                         </article>
                     {% empty %}
-                        <p class="empty-state">
-                            Belum ada pengalaman yang ditambahkan.
-                        </p>
+                        {% if title_query %}
+                            <p class="empty-state">Tidak ada pengalaman dengan nama tersebut.</p>
+                        {% else %}
+                            <p class="empty-state">Belum ada pengalaman yang ditambahkan.</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

@@ -316,23 +316,27 @@ h1, .brand {
 }
  
 ::-webkit-scrollbar-thumb {
-    background: var(--accent-dark); 
+    background: var(--accent); 
     border-radius: var(--radius);
     transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent); 
+    background: var(--accent-light); 
 }
 
-/* /experience */
-/* experience-section */
-.experience-section {
+/* goods */
+.goods-section {
     padding: 4rem 0;
     border-top: 1px solid var(--line);
 }
 
-.section-kicker {
+.goods-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
+}
+
+.goods-kicker {
     color: var(--accent-light);
     font-size: 0.8rem;
     font-weight: 700;
@@ -340,51 +344,36 @@ h1, .brand {
     text-transform: uppercase;
 }
 
-.experience-section h1 {
-    margin: 0.4rem 0 1.5rem;
-    font-size: 2rem;
-}
-
-.experience-grid {
+.goods-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
 }
 
-.experience-card {
+.goods-card {
     padding: 1.25rem;
     background-color: var(--paper-dark);
     border: 1px solid var(--line);
     border-radius: var(--radius);
 }
 
-.experience-category {
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.experience-card h2 {
+.goods-card h2 {
     margin: 0.5rem 0;
     font-size: 1.25rem;
 }
 
-.experience-description,
+.goods-grid .goods-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.goods-description,
 .empty-state {
     margin-top: 1rem;
     color: var(--ink-dark);
 }
 
-.experience-status {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-/* /projects */
-/* projects-section */
-.project-header {
+.goods-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -393,17 +382,7 @@ h1, .brand {
     margin-bottom: 1.5rem;
 }
 
-/* projects */
-.project-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.project-grid .experience-card {
-    display: flex;
-    flex-direction: column;
-}
-
-.project-thumbnail {
+.goods-thumbnail {
     display: block;
     width: 100%;
     height: auto;
@@ -413,30 +392,30 @@ h1, .brand {
     object-fit: cover;
 }
 
-.project-header h1 {
+.goods-header h1 {
     margin-bottom: 0;
 }
 
-/* projects add */
-.project-add-button {
+/* goods add */
+.goods-add-button {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
 }
 
-.project-add-button span {
+.goods-add-button span {
     font-size: 1.25rem;
     line-height: 1;
 }
 
-/* projects search */
-.project-search {
+/* goods search */
+.goods-search {
     display: flex;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
-.project-search__input {
+.goods-search__input {
     box-sizing: border-box;    
     width: 100%;
     min-width: 0;
@@ -451,25 +430,25 @@ h1, .brand {
         outline-color 0.2s ease;
 }
 
-.project-search__input:focus {
+.goods-search__input:focus {
     outline: 2px solid var(--accent-light);
     border-color: var(--accent);
 }
 
-/* projects buttons */
-.project-actions {
+/* goods buttons */
+.goods-actions {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.5rem;
     margin-top: 1rem;
 }
 
-.project-actions .button {
+.goods-actions .button {
     font-size: 0.85rem;
     font-weight: 600;
 }
 
-.project-card-actions {
+.goods-card-actions {
     display: flex;
     flex-direction: column;
     margin-top: auto;
@@ -479,8 +458,8 @@ h1, .brand {
     display: none !important;
 }
 
-/* delete project popup */
-.project-delete-modal {
+/* delete popup */
+.goods-delete-modal {
     display: none;
     position: fixed;
     inset: 0;
@@ -497,11 +476,11 @@ h1, .brand {
     justify-content: center;
 }
 
-.project-delete-modal:popover-open {
+.goods-delete-modal:popover-open {
     display: flex;
 }
 
-.project-delete-modal__backdrop {
+.goods-delete-modal__backdrop {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -512,7 +491,7 @@ h1, .brand {
     cursor: default;
 }
 
-.project-delete-modal__content {
+.goods-delete-modal__content {
     position: relative;
     z-index: 1;
     width: min(100%, 480px);
@@ -524,7 +503,7 @@ h1, .brand {
     box-shadow: 0 1rem 3rem rgba(28, 25, 23, 0.22);
 }
 
-.project-delete-modal__content h2 {
+.goods-delete-modal__content h2 {
     margin: 0 0 0.75rem;
     font-family:
         "Space Grotesk",
@@ -533,7 +512,7 @@ h1, .brand {
     font-size: 1.5rem;
 }
 
-.project-delete-modal__close {
+.goods-delete-modal__close {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -546,15 +525,15 @@ h1, .brand {
     cursor: pointer;
 }
 
-.project-delete-modal__actions {
+.goods-delete-modal__actions {
     display: flex;
     justify-content: flex-end;
     gap: 0.75rem;
     margin-top: 1.5rem;
 }
 
-/* delete project button */
-.project-links.button-danger {
+/* delete button */
+.goods-links.button-danger {
     font-family: inherit;
     line-height: inherit;
     border: none;
@@ -570,53 +549,13 @@ h1, .brand {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.project-links.button-danger:hover {
+.goods-links.button-danger:hover {
     color: var(--ink-dark);
     background: var(--accent-dark);
 }
 
-@media (max-width: 600px) {
-    .project-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .project-add-button {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .project-search {
-        flex-direction: column;
-    }
-
-    .project-search .button {
-        width: 100%;
-    }
-
-    .project-delete-modal {
-        align-items: flex-end;
-        padding: 0;
-    }
-
-    .project-delete-modal__content {
-        width: 100%;
-        padding: 1.25rem;
-        border-radius: var(--radius) var(--radius) 0 0;
-    }
-
-    .project-delete-modal__actions {
-        flex-direction: column-reverse;
-    }
-
-    .project-delete-modal__actions .button {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-/* other projects buttons */
-.project-links {
+/* link buttons */
+.goods-links {
     text-align: center;
     display: inline-block;
     font-size: 0.85rem;
@@ -629,12 +568,12 @@ h1, .brand {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.project-links:hover {
+.goods-links:hover {
     color: var(--paper-dark);
     background-color: var(--ink-dark);
 }
 
-.project-links-off {
+.goods-links-off {
     text-align: center;
     display: inline-block;
     font-size: 0.85rem;
@@ -647,9 +586,48 @@ h1, .brand {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* projects_form */
-/* project form */
-.project-form {
+@media (max-width: 600px) {
+    .goods-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .goods-add-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .goods-search {
+        flex-direction: column;
+    }
+
+    .goods-search .button {
+        width: 100%;
+    }
+
+    .goods-delete-modal {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .goods-delete-modal__content {
+        width: 100%;
+        padding: 1.25rem;
+        border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .goods-delete-modal__actions {
+        flex-direction: column-reverse;
+    }
+
+    .goods-delete-modal__actions .button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* form */
+.goods-form {
     width: 100%;
     max-width: 100%;
     margin-top: 1.5rem;
@@ -665,9 +643,17 @@ h1, .brand {
     font-weight: 700;
 }
 
+.form-error {
+    color: #b42318;
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+}
+
 /* form input fields */
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
+    resize: none;
     width: 100%;
     box-sizing: border-box;
     padding: 0.7rem;
@@ -682,18 +668,58 @@ h1, .brand {
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: 2px solid var(--accent-light);
     border-color: var(--accent-light);
 }
 
-.form-error {
-    color: #b42318;
-    font-size: 0.85rem;
-    margin-top: 0.35rem;
+.form-group select option {
+    color: var(--ink-dark);
+    background: var(--accent-dark);
 }
 
-/* form buttons */
+.form-group select option:hover,
+.form-group select option:checked {
+    color: var(--ink);
+    background: var(--accent);
+    font-weight: 670;
+}
+
+select,
+::picker-icon {
+    appearance: base-select;
+}
+
+select::picker-icon {
+    color: var(--line);
+    transition:
+        color 0.2s ease,
+        rotate 0.2s ease;
+}
+
+select:open::picker-icon {
+    color: var(--accent-light);
+    rotate: 180deg;
+}
+
+/* goods/experience */
+.experience-category {
+    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.67rem;
+}
+
+.experience-status {
+    color: var(--ink-dark);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.67rem;
+}
+
+/* other buttons */
 .button {
     display: inline-block;
     height: fit-content;
