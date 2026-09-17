@@ -9,14 +9,14 @@ Website: https://axel-sebastian-myportofolio.pws.cs.ui.ac.id
 ## Week 3
 Form & Data Delivery
 
-1. Jelaskan mengapa kita menggunakan ModelForm pada Django alih-alih membuat form HTML secara manual. Selain itu, jelaskan pula mengapa kita diwajibkan menambahkan {% csrf_token %} pada form tersebut!
-3. Jelaskan alur yang terjadi saat kamu menggunakan fungsi view untuk mengembalikan data portofoliomu dalam bentuk JSON. Mengapa kita perlu melakukan proses serialization pada model Django sebelum datanya dikembalikan?
+**-- [Menggunakan AI](https://share.gemini.google/J4ojcP02MIS5) --** \
+Awalnya saya mengira akan dapat mengerjakan bagian _update forms_ dengan menggunakan tutorial [W3schools](https://www.w3schools.com/django/django_update_record.php), ujung-ujungnya saya berakhir mengajukan pertanyaan ke Gemini karena perbedaan implementasi yang disediakan oleh W3schools. Ternyata, solusi sementara yang saya sudah buat tidak jauh beda dengan solusinya, terkecuali untuk bagian Adjusting the Form Template. Tak terpikir bagi saya untuk langsung saja menambah kondisional pada form jikalau pengguna ingin menambahkan atau merubah pengalaman. Selain dari itu, saya tidak mengalami banyak kesulitan.
 
 
 ### Tugas 3
-1. ...
+1. Jika kita membuat form HTML secara manual, kita harus mengatur input, memetakan setiap _request_, melakukan validasi tipe data, menangani error dan penyimpanan data semuanya juga secara manual. ModelForm digunakan untuk mengotomatisasi proses formulir tersebut sesuai skema database. Sementara itu, token CSRF digunakan untuk mencegah penyerangan CSRF (Cross-Site Request Forgery), di mana penyerang mengubah tujuan request yang awalnya ke server Django menjadi ke API lain yang berbahaya, mengirimkan data request tersebut ke mereka.
 2. JSON lebih disukai dibandingkan XML dalam pengembangan aplikasi web modern karena ukurannya yang lebih ringkas dan sangat mudah untuk di-_parse_ dan _generate_ oleh mesin. Namun, fiturnya yang paling mencolok yaitu berupa integrasinya yang sangat natural dengan JavaScript untuk _frontend_ (namanya sendiri JavaScript Object Notation).
-3. ...
+3. Di awal, ketika pengguna mengirimkan _request_ (contoh: api/projects/), `urls.py` mencocokkan rute tersebut dan mengarahkannya ke `get_projects_json()` di `views.py`. Di _view_, rekaman data `projects` kemudian diambil lalu diserialisasi menggunakan `serializers.serialize("json", projects)`. JSON tersebut lalu dibungkus ke dalam sebuah `HttpResponse` yang kemudian akan dikembalikan ke klien/browser/fungsi lain. _Serialization_ kita lakukan pada objek model guna menerjemahkan struktur datanya ke dalam format yang lebih mudah disimpan atau dikirimkan, seperti JSON.
 
 
 ## Week 2

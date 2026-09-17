@@ -360,6 +360,8 @@ h1, .brand {
 .goods-card h2 {
     margin: 0.5rem 0;
     font-size: 1.25rem;
+    overflow-wrap: anywhere;
+    text-align: justify;
 }
 
 .goods-grid .goods-card {
@@ -371,6 +373,8 @@ h1, .brand {
 .empty-state {
     margin-top: 1rem;
     color: var(--ink-dark);
+    overflow-wrap: anywhere;
+    text-align: justify;
 }
 
 .goods-header {
@@ -438,7 +442,7 @@ h1, .brand {
 /* goods buttons */
 .goods-actions {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.5rem;
     margin-top: 1rem;
 }
@@ -492,6 +496,8 @@ h1, .brand {
 }
 
 .goods-delete-modal__content {
+    overflow-wrap: anywhere;
+    text-align: justify;
     position: relative;
     z-index: 1;
     width: min(100%, 480px);
@@ -556,6 +562,7 @@ h1, .brand {
 
 /* link buttons */
 .goods-links {
+    align-content: center;
     text-align: center;
     display: inline-block;
     font-size: 0.85rem;

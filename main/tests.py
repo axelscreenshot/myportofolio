@@ -70,6 +70,13 @@ class MainTest(TestCase):
         self.assertContains(response, "Selesai")
         self.assertNotContains(response, "Sedang berlangsung")
 
+    def test_add_experience_is_accessible(self):
+        response = self.client.get(reverse("main:create_experience"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "experience_form.html")
+        self.assertContains(response, f'href="{reverse("main:show_experience")}"')
+
     # project
     def test_project_model(self):
         self.assertEqual(str(self.project), "This Website")
@@ -95,9 +102,16 @@ class MainTest(TestCase):
 
         self.assertContains(response, "Belum ada proyek yang ditambahkan.")
 
-    def test_completed_projects(self):
+    def test_project_has_links(self):
         self.project.source = "https://en.wikipedia.org/w/index.php?title=Trollface&action=edit"
         self.project.save()
         response = self.client.get(reverse("main:show_experience"))
 
         self.assertTrue(self.project.has_source)
+
+    def test_add_project_is_accessible(self):
+        response = self.client.get(reverse("main:create_project"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "projects_form.html")
+        self.assertContains(response, f'href="{reverse("main:show_projects")}"')

@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.template import loader
 
 from main.models import Project, Experience
 from main.forms import ProjectForm, ExperienceForm
@@ -76,13 +75,21 @@ def delete_experience(request, experience_id):
     return redirect("main:show_experience")
 
 
-# def update_experience(request, experience_id):
-#     experience = get_object_or_404(Experience, pk=experience_id)
-#     template = loader.get_template('experience_form.html')
-#     context = {
-#         'experience': experience,
-#     }
-#     return HttpResponse(template.render(context, request))
+def update_experience(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+    form = ExperienceForm(request.POST or None, instance=experience)
+    
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, f"Pengalaman '{experience.title}' telah diperbarui!")
+        return redirect("main:show_experience")
+
+    context = {
+        "name": "Axel Sebastian Saragih",
+        "experience": experience,
+        "form": form,
+    }
+    return render(request, "experience_form.html", context)
 
 
 def show_projects(request):
@@ -138,3 +145,20 @@ def delete_project(request, project_id):
         return redirect("main:show_projects")
 
     return redirect("main:show_projects")
+
+
+def update_project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    form = ProjectForm(request.POST or None, instance=project)
+    
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, f"Proyek '{project.title}' telah diperbarui!")
+        return redirect("main:show_projects")
+
+    context = {
+        "name": "Axel Sebastian Saragih",
+        "project": project,
+        "form": form,
+    }
+    return render(request, "projects_form.html", context)
