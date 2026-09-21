@@ -9,11 +9,13 @@
                 <p class="goods-kicker">Karya yang pernah saya buat</p>
                 <div class="goods-header">
                     <h1>Projects</h1>
-                    <a href="{% url 'main:create_project' %}"
-                       class="button goods-add-button">
-                        <span aria-hidden="true">+</span>
-                        Tambah Proyek
-                    </a>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'main:create_project' %}"
+                           class="button goods-add-button">
+                            <span aria-hidden="true">+</span>
+                            Tambah Proyek
+                        </a>
+                    {% endif %}
                 </div>
                 <form method="get"
                       action="{% url 'main:show_projects' %}"
@@ -42,7 +44,7 @@
                             <h2>{{ project.title }}</h2>
                             <p class="goods-description">{{ project.description }}</p>
                             <div class="goods-card-actions">
-                                <div class="goods-actions">
+                                <div class="goods-actions{% if user.is_superuser %} is-superuser{% endif %}">
                                     {% if project.has_view %}
                                         <a title="View Project" href="{{ project.view }}" class="goods-links" target="_blank">View</a>
                                     {% else %}
@@ -54,15 +56,19 @@
                                     {% else %}
                                         <div class="goods-links-off">Source</div>
                                     {% endif %}
+                                    
+                                    {% if user.is_superuser %}
+                                        <a href="{% url 'main:update_project' project.id %}"
+                                            class="goods-links button-danger"
+                                            aria-label="Update {{ project.title }}"
+                                            title="Update Project">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
 
-                                    <a href="{% url 'main:update_project' project.id %}"
-                                        class="goods-links button-danger"
-                                        aria-label="Update {{ project.title }}"
-                                        title="Update Project">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
+                                        {% include "components/project_delete_modal.html" with project=project %}
+                                    {% endif %}
 
-                                    {% include "components/project_delete_modal.html" with project=project %}
+                                    {% include "components/project_star.html" with project=project %}
                                 </div>
                             </div>
                         </article>

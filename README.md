@@ -6,6 +6,19 @@ Kelas : PBP B
 Website: https://axel-sebastian-myportofolio.pws.cs.ui.ac.id
 
 
+## Week 4
+Authentication, Session and Cookies Implementation
+
+**-- Disclaimer --** \
+Essay
+
+
+### Tugas 4
+1. 
+2. 
+3. 
+
+
 ## Week 3
 Form & Data Delivery
 
@@ -55,3 +68,4 @@ Karena ini pertama kali saya membuat proyek serius menggunakan HTML dan CSS, say
 7. [GeeksforGeeks](https://www.geeksforgeeks.org), other more theoretical questions
 8. [django Documentation](https://docs.djangoproject.com/en/6.1/), details about models and making queries
 9. [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference), css selector customization
+10. [Learning about Electronics](https://www.learningaboutelectronics.com/Articles/How-to-redirect-a-user-after-login-to-the-URL-in-the-next-parameter-in-Django.php), redirecting user to `next` after login

@@ -17,6 +17,8 @@ html {
     --accent-light: #3955b1; /* 2e4799  1b3076  0d1d50*/
     --accent: #223675; /* 9faca3  808f85  75857a  607165*/
     --accent-dark: #1b2957;
+    --star: #EFCB68;
+    --star-dark: #d4b04c;
     --radius: 4px;
 }
 
@@ -87,6 +89,16 @@ h1, .brand {
 
 .site-header nav a:hover {
     color: var(--ink-dark);
+}
+
+.nav-user {
+    color: var(--star-dark);
+    transition: color 0.2s ease;
+}
+
+.nav-user:hover {
+    color: var(--star);
+    font-weight: 500;
 }
 
 /* index#profile */
@@ -442,9 +454,13 @@ h1, .brand {
 /* goods buttons */
 .goods-actions {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
     margin-top: 1rem;
+}
+
+.goods-actions.is-superuser {
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .goods-actions .button {
@@ -651,7 +667,7 @@ h1, .brand {
 }
 
 .form-error {
-    color: #b42318;
+    color: #ff1100;
     font-size: 0.85rem;
     margin-top: 0.35rem;
 }
@@ -758,4 +774,49 @@ select:open::picker-icon {
 .button-secondary:hover {
     color: var(--ink-dark);
     background: var(--accent-dark);
+}
+
+.star-form {
+    display: inline;
+}
+
+.goods-actions .star-form {
+    grid-column: 1 / -1;
+}
+
+.goods-actions .star-form .button-star {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-star {
+    gap: 0.4rem;
+    color: var(--ink-dark);
+    background: var(--accent-dark);
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.button-star:hover {
+    color: var(--ink);
+    background: var(--accent);
+}
+
+.button-star.is-starred {
+    color: var(--paper);
+    background: var(--star);
+}
+
+.button-star.is-starred:hover {
+    color: var(--paper-dark);
+    background: var(--star-dark);
+}
+
+.star-count {
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
 }
