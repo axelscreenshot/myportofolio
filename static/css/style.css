@@ -820,3 +820,20 @@ select:open::picker-icon {
     background: rgba(255, 255, 255, 0.25);
     font-size: 0.8rem;
 }
+
+.account-tip {
+    margin-top: 0.67rem;
+}
+
+.account-tip a{
+    transition: color 0.2s ease;
+    color: var(--star);
+}
+
+.account-tip a:visited {
+    color: var(--ink-dark);
+}
+
+.account-tip a:hover {
+    font-weight: 500;
+}
