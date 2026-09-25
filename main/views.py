@@ -30,6 +30,7 @@ def show_main(request):
 
 
 def show_experience(request):
+    is_editor = request.user.groups.filter(name='Editor').exists()
     json_response = get_experience_json(request)
     
     experiences = serializers.deserialize(
@@ -43,6 +44,7 @@ def show_experience(request):
         "name": "Axel Sebastian Saragih",
         "experience_list": experiences,
         "title_query": title_query,
+        "is_editor": is_editor,
     }
     return render(request, "experience.html", context)
 
@@ -73,7 +75,7 @@ def get_experience_json(request):
     if title_query:
         experiences = experiences.filter(title__icontains=title_query)
 
-    experience_json = serializers.serialize("json", experiences)
+    experience_json = serializers.serialize("json", experiences, use_natural_foreign_keys=True)
     return HttpResponse(experience_json, content_type="application/json")
 
 
@@ -94,7 +96,8 @@ def delete_experience(request, experience_id):
 
 @login_required(login_url="/login/")
 def update_experience(request, experience_id):
-    if not request.user.is_superuser:
+    is_editor = request.user.groups.filter(name='Editor').exists()
+    if not (request.user.is_superuser or is_editor):
         raise PermissionDenied
 
     experience = get_object_or_404(Experience, pk=experience_id)
@@ -114,6 +117,7 @@ def update_experience(request, experience_id):
 
 
 def show_projects(request):
+    is_editor = request.user.groups.filter(name='Editor').exists()
     json_response = get_projects_json(request)
 
     projects = serializers.deserialize(
@@ -127,6 +131,7 @@ def show_projects(request):
         "name": "Axel Sebastian Saragih",
         "project_list": projects,
         "title_query": title_query,
+        "is_editor": is_editor,
     }
     return render(request, "projects.html", context)
 
@@ -178,7 +183,8 @@ def delete_project(request, project_id):
 
 @login_required(login_url="/login/")
 def update_project(request, project_id):
-    if not request.user.is_superuser:
+    is_editor = request.user.groups.filter(name='Editor').exists()
+    if not (request.user.is_superuser or is_editor):
         raise PermissionDenied
 
     project = get_object_or_404(Project, pk=project_id)
@@ -243,7 +249,7 @@ def logout_user(request):
 
 
 @login_required(login_url="/login/")
-def toggle_star(request, project_id):
+def toggle_project_star(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
     # pemeriksaan request.method == "POST" memastikan data hanya berubah lewat pengiriman form
@@ -254,3 +260,16 @@ def toggle_star(request, project_id):
             project.starred_by.add(request.user)
 
     return redirect("main:show_projects")
+
+
+@login_required(login_url="/login/")
+def toggle_experience_star(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+
+    if request.method == "POST":
+        if request.user in experience.starred_by.all():
+            experience.starred_by.remove(request.user)
+        else:
+            experience.starred_by.add(request.user)
+
+    return redirect("main:show_experience")

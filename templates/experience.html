@@ -54,8 +54,8 @@
                             <h2>{{ experience.title }}</h2>
                             <p class="goods-description">{{ experience.description }}</p>
                             <div class="goods-card-actions">
-                                <div class="goods-actions">
-                                    {% if user.is_superuser %}
+                                <div class="goods-actions{% if user.is_superuser %} dua{% elif is_editor %} satu{% endif %}">
+                                    {% if user.is_superuser or is_editor %}
                                         <a href="{% url 'main:update_experience' experience.id %}"
                                             class="goods-links button-danger"
                                             aria-label="Update {{ experience.title }}"
@@ -63,8 +63,12 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
 
-                                        {% include "components/experience_delete_modal.html" with experience=experience %}
+                                        {% if user.is_superuser %}
+                                            {% include "components/experience_delete_modal.html" with experience=experience %}
+                                        {% endif %}
                                     {% endif %}
+
+                                    {% include "components/experience_star.html" with experience=experience %}
                                 </div>
                             </div>
                         </article>

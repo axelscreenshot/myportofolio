@@ -92,13 +92,13 @@ h1, .brand {
 }
 
 .nav-user {
+    font-weight: 500;
     color: var(--star-dark);
     transition: color 0.2s ease;
 }
 
 .nav-user:hover {
     color: var(--star);
-    font-weight: 500;
 }
 
 /* index#profile */
@@ -452,15 +452,23 @@ h1, .brand {
 }
 
 /* goods buttons */
-.goods-actions {
+.goods-actions { /* dua */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
     margin-top: 1rem;
 }
 
-.goods-actions.is-superuser {
+.goods-actions.empat {
     grid-template-columns: repeat(4, 1fr);
+}
+
+.goods-actions.satu {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.goods-actions.tiga {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .goods-actions .button {
@@ -825,15 +833,11 @@ select:open::picker-icon {
     margin-top: 0.67rem;
 }
 
-.account-tip a{
+.account-tip a {
     transition: color 0.2s ease;
     color: var(--star);
 }
 
-.account-tip a:visited {
-    color: var(--ink-dark);
-}
-
 .account-tip a:hover {
-    font-weight: 500;
+    color: var(--star-dark);
 }

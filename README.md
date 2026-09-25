@@ -9,14 +9,11 @@ Website: https://axel-sebastian-myportofolio.pws.cs.ui.ac.id
 ## Week 4
 Authentication, Session and Cookies Implementation
 
-**-- Disclaimer --** \
-Essay
+**-- [Menggunakan AI](https://share.gemini.google/RTbVSLwIk4OU) --** \
+Versi ini mengimplementasikan fitur register dan login akun menggunakan sistem autentikasi Django, otorisasi berdasarkan peran user, juga penggunaan model many-to-many untuk pemberian star pada _projects_ dan _experience_. Untuk tugas ke-4, saya menggunakan Gemini untuk membantu e2e testing, khususnya pada bagian testing user editor: penambahan user test ke dalam sebuah grup serta penambahan mock project untuk testing update form. Testing dilakukan menggunakan skrip tes otomatis dengan _framework_ Selenium. Bantuan dari Gemini kemudian saya adaptasi dan sesuaikan turut dengan format testing yang sudah dilakukan sebelumnya. Selain itu, versi ini juga memiliki fitur display tombol action yang dinamis mengikuti role user. User biasa/yang belum login, editor, serta admin semuanya memiliki _permissions_ yang berbeda-beda, sehingga class display grid css juga diatur dengan kondisional yang ditulis di html masing-masing halaman.
 
 
-### Tugas 4
-1. 
-2. 
-3. 
+### ~~Tugas 4~~
 
 
 ## Week 3

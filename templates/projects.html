@@ -44,7 +44,7 @@
                             <h2>{{ project.title }}</h2>
                             <p class="goods-description">{{ project.description }}</p>
                             <div class="goods-card-actions">
-                                <div class="goods-actions{% if user.is_superuser %} is-superuser{% endif %}">
+                                <div class="goods-actions{% if user.is_superuser %} empat{% elif is_editor %} tiga{% endif %}">
                                     {% if project.has_view %}
                                         <a title="View Project" href="{{ project.view }}" class="goods-links" target="_blank">View</a>
                                     {% else %}
@@ -57,7 +57,7 @@
                                         <div class="goods-links-off">Source</div>
                                     {% endif %}
                                     
-                                    {% if user.is_superuser %}
+                                    {% if user.is_superuser or is_editor %}
                                         <a href="{% url 'main:update_project' project.id %}"
                                             class="goods-links button-danger"
                                             aria-label="Update {{ project.title }}"
@@ -65,7 +65,9 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
 
-                                        {% include "components/project_delete_modal.html" with project=project %}
+                                        {% if user.is_superuser %}
+                                            {% include "components/project_delete_modal.html" with project=project %}
+                                        {% endif %}
                                     {% endif %}
 
                                     {% include "components/project_star.html" with project=project %}

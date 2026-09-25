@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea, URLInput, Select, ChoiceField
+from django.forms import ModelForm, TextInput, Textarea, URLInput, Select
 
 from main.models import Project, Experience
 
