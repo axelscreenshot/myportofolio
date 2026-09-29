@@ -1,4 +1,6 @@
 from django.forms import ModelForm, TextInput, Textarea, URLInput, Select
+from django.core.exceptions import ValidationError
+from django.utils.html import strip_tags
 
 from main.models import Project, Experience
 
@@ -51,6 +53,18 @@ class ProjectForm(ModelForm):
                 }
             ),
         }
+
+    def clean_title(self):
+        title = strip_tags(self.cleaned_data["title"]).strip()
+        if not title:
+            raise ValidationError("Project title cannot only be HTML tags.")
+        return title
+
+    def clean_description(self):
+        description = strip_tags(self.cleaned_data["description"]).strip()
+        if not description:
+            raise ValidationError("Project description cannot only be HTML tags.")
+        return description
 
 class ExperienceForm(ModelForm):
     class Meta:
