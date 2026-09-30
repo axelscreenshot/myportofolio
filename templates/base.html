@@ -13,10 +13,13 @@
     {% block meta %} {% endblock meta %}
 </head>
 <body>
-    <header class="site-header">
+    <header class="site-header" id="site-header">
         <div class="container">
             <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
-            <nav>
+            <button class="nav-toggle" id="nav-toggle" onclick="hamburger()" title="Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
                 <a href="{% url 'main:show_main' %}#profile">Profile</a>
                 <a href="{% url 'main:show_main' %}#skills">Skills</a>
                 <a href="{% url 'main:show_experience' %}">Experience</a>
@@ -31,7 +34,14 @@
             </nav>
         </div>
     </header>
-
+    
+    <script>
+        // Toggle between hiding and showing the dropdown content */
+        function hamburger() {
+            document.getElementById('nav-links').classList.toggle('show');
+            document.getElementById('site-header').classList.toggle('show');
+        }
+    </script>
     {% block content %} {% endblock content %}
 
     <footer class="site-footer">

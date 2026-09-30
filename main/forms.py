@@ -115,3 +115,18 @@ class ExperienceForm(ModelForm):
             # "started_at"
             # "ended_at"
         }
+    
+    def clean_title(self):
+        title = strip_tags(self.cleaned_data["title"]).strip()
+        if not title:
+            raise ValidationError("Project title cannot only be HTML tags.")
+        return title
+
+    def clean_description(self):
+        description = strip_tags(self.cleaned_data["description"]).strip()
+        if not description:
+            raise ValidationError("Project description cannot only be HTML tags.")
+        return description
+
+    def clean_category(self):
+        return strip_tags(self.cleaned_data["category"]).strip()

@@ -55,6 +55,9 @@
     {% include "components/project_form_modal.html" %}
 {% endif %}
 
+{% load static %}
+<script src="{% static 'js/cookie.js' %}"></script>
+<script src="{% static 'js/escape.js' %}"></script>
 <script>
     // Konfigurasi
     const BASE_PROJECTS_ENDPOINT = "{% url 'main:get_projects_json' %}";
@@ -78,16 +81,6 @@
         errorState.classList.toggle('hide', !showError);
         emptyState.classList.toggle('hide', !showEmpty);
         gridContainer.classList.toggle('hide', !showGrid);
-    }
-
-    // Mengubah karakter khusus HTML menjadi entity agar ditampilkan sebagai teks
-    function escapeHtml(value) {
-        return String(value ?? '')
-            .replaceAll('&', '&amp;') // Diganti paling awal agar `&` lain tidak ikut diubah lagi
-            .replaceAll('<', '&lt;')
-            .replaceAll('>', '&gt;')
-            .replaceAll('"', '&quot;')
-            .replaceAll("'", '&#39;');
     }
 
     // Membuat elemen card project
@@ -150,7 +143,7 @@
             <h2>${escapeHtml(project.title)}</h2>
             <p class="goods-description">${escapeHtml(project.description)}</p>
             <div class="goods-card-actions">
-                <div class="goods-actions{% if user.is_superuser %} empat{% elif is_editor %} tiga{% endif %}">
+                <div class="goods-actions{% if user.is_superuser %} dua{% elif is_editor %} tiga{% endif %}">
                     ${viewHtml}
                     ${sourceHtml}
                     ${updateHtml}
@@ -234,23 +227,7 @@
     const CREATE_PROJECT_ENDPOINT = "{% url 'main:create_project_ajax' %}";
     const projectForm = document.getElementById('project-form');
 
-    // Membaca nilai cookie, digunakan untuk mengambil token CSRF
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    // Mengirim data form ke server
+    // Mengirim data form ke server (try to catch non superusers)
     async function addProject(event) {
         event.preventDefault();
 
