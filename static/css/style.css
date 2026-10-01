@@ -102,7 +102,8 @@ h1, .brand {
 }
 
 /* nav toggle */
-.nav-toggle {
+.nav-toggle,
+.nav-toggle.logged-in {
     display: none;
     background: none;
     border: none;
@@ -118,9 +119,21 @@ h1, .brand {
         color: var(--ink);
     }
 
+    .nav-toggle.logged-in {
+        display: block;
+        border-radius: var(--radius);
+        transition: color 0.2s ease;
+        color: var(--star);
+    }
+
     .nav-toggle:hover {
         background-color: var(--accent-dark);
         color: var(--ink-dark);
+    }
+
+    .nav-toggle.logged-in:hover {
+        background-color: var(--accent-dark);
+        color: var(--star-dark);
     }
 
     #nav-links {
@@ -132,7 +145,7 @@ h1, .brand {
         right: 0;
         padding: 1rem;
         gap: 1rem;
-        background: var(--paper-dark);
+        background-color: rgba(0, 0, 0, 0.85);
     }
 
     #nav-links.show {
@@ -140,7 +153,7 @@ h1, .brand {
     }
 
     .site-header.show {
-        background: var(--paper-dark);
+        background-color: rgba(0, 0, 0, 0.85);
     }
 }
 

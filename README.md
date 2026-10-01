@@ -6,17 +6,30 @@ Kelas : PBP B
 Website: https://axel-sebastian-myportofolio.pws.cs.ui.ac.id
 
 
-<!-- ## Week 5
-Web Interactivity with JavaScript
+<!-- ## Week 6
+Topic
 
 **-- Disclaimer --** \
 Essay
 
 
-### Tugas 5
+### Tugas 6
 1. ...
 2. ...
 3. ... -->
+
+
+## Week 5
+Web Interactivity with JavaScript
+
+**-- Tidak menggunakan AI --** \
+Tidak ada perubahan yang terlalu signifikan di pekan ini, hanya memerlukan banyak reformatting yang hati-hati dan teliti. Konsep dan pengimplementasiannya dapat dengan baik saya pahami, tetapi mungkin akan berbeda ceritanya jika untuk quiz selanjutnya akan perlu menghapal sebanyak ini. Selain dari itu, ditambahkan pula fitur dropdown untuk keperluan navbar di device yang lebih kecil (seharusnya ditambahkan sejak awal _but welp_).
+
+
+### Tugas 5
+1. Debouncing adalah teknik menunda sebuah fungsi hingga suatu jeda waktu telah berlalu setelah event terakhir berakhir. Fitur pencarian yang menggunakan AJAX dilakukan agar pencarian terasa lebih responsif, tetapi implementasi fungsinya yang menggunakan _event_ `input` berarti akan mengirimkan _request_ per karakter yang diketik. Debouncing dilakukan dengan memberikan _delay_ (misalnya 300 ms) sehingga browser menunggu selama itu setelah kita berhenti mengetik sebelum mengirimkan _request_ selanjutnya, mereset _timer_-nya apabila kita kemudian lanjut mengetik.
+2. Karena fungsi `fetch` dan `add` asinkronus (memiliki keyword `async` di depan), fungsi-fungsi tersebut mengembalikan sebuah `Promise`. Barulah `await` bisa digunakan di dalam _async function_ tersebut. Fungsi _keyword_ ini adalah untuk menunggu `Promise` yang dikembalikan fungsi untuk selesai diproses sebelum kemudian menjalankan kembali kode. `async` hanya memberhentikan sementara fungsi `async`-nya, tidak JavaScript secara keseluruhan. Tanpa `await`, kode berikutnya akan langsung dijalankan tanpa menunggu hasilnya, menghasilkan error.
+3. Cross-Site Scripting (XSS) adalah serangan berupa sisipan kode JavaScript oleh penyerang ke dalam halaman web yang kemudian dijalankan di browser pengguna lain. Template Django mencegah ini terjadi dengan melakukan auto-escaping pada setiap `{ variabel }`. Karakter seperti `<` dan `>` diubah menjadi `&lt;` dan `&gt;` sehingga browser menampilkannya sebagai teks biasa dan bukan sebagai tag HTML. Perlindungan itu hilang ketika data ditampilkan melalui AJAX/JavaScript karena data dari JSON disisipkan ke dalam template secara literal tanpa _escaping_, sehingga browser akan memperlakukan setiap tag HTML di dalam data sebagai kode sungguhan. Hal ini kita cegah dengan menambahkan fungsi _escaping_ sendiri dengan `escape.js`
 
 
 ## Week 4

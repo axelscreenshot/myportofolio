@@ -16,7 +16,7 @@
     <header class="site-header" id="site-header">
         <div class="container">
             <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
-            <button class="nav-toggle" id="nav-toggle" onclick="hamburger()" title="Navigation Menu">
+            <button class="nav-toggle{% if user.is_authenticated %} logged-in{% endif %}" id="nav-toggle" onclick="hamburger()" title="Navigation Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <nav class="nav-links" id="nav-links">
