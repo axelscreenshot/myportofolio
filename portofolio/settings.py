@@ -18,9 +18,13 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "axel-sebastian-myportofolio.pws.cs.ui.ac.id"]
-
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "axel-sebastian-myportofolio.pws.cs.ui.ac.id"
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://axel-sebastian-myportofolio.pws.cs.ui.ac.id",
@@ -37,11 +41,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jsd$$_4(xaeyod9@2)68$j-y()&r9cx0l4x27!vy#$-((juou3'
+# The fallback is for local dev only; set SECRET_KEY on PWS.
+SECRET_KEY = os.getenv(
+    'SECRET_KEY',
+    'django-insecure-jsd$$_4(xaeyod9@2)68$j-y()&r9cx0l4x27!vy#$-((juou3'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', str(not PRODUCTION)).lower() == 'true'
 
+# Local Django servers must still serve uploaded media when DEBUG is disabled
+# by the workstation environment. Keep media serving off in production by default.
+SERVE_MEDIA = os.getenv('SERVE_MEDIA', str(not PRODUCTION)).lower() == 'true'
 
 # Application definition
 
