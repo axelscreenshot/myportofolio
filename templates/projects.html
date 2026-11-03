@@ -54,6 +54,9 @@
 {% if user.is_superuser %}
     {% include "components/project_form_modal.html" %}
 {% endif %}
+{% if user.is_superuser or is_editor %}
+    {% include "components/project_edit_modal.html" %}
+{% endif %}
 
 {% load static %}
 <script src="{% static 'js/cookie.js' %}"></script>
@@ -74,6 +77,9 @@
     const searchForm = document.getElementById('project-search-form');
     const searchInput = document.getElementById('search-input');
     const projectForm = document.getElementById('project-form');
+    const editProjectForm = document.getElementById('edit-project-form');
+    const editProjectModal = document.getElementById('edit-project-modal');
+    const projectFields = ['title', 'description', 'thumbnail', 'view', 'source'];
     let projectsAbortController;
     let searchDebounceTimer;
     
@@ -132,6 +138,11 @@
                 data-id="${escapeHtml(project.id)}"><i class="fa-solid fa-trash"></i></button>`
             : '';
 
+        const edit = IS_SUPERUSER || IS_EDITOR
+            ? `<button type="button" class="goods-links button-danger" title="Update Project" data-action="update"
+                data-id="${escapeHtml(project.id)}"><i class="fa-solid fa-pen-to-square"></i></button>`
+            : '';
+
         article.innerHTML = `
             ${image}
             <h2>${escapeHtml(project.title)}</h2>
@@ -140,8 +151,11 @@
                 <div class="goods-actions{% if user.is_superuser %} dua{% elif is_editor %} tiga{% endif %}">
                     ${view}
                     ${source}
+                    ${edit}
                     ${remove}
-                    ${star}
+                    <div class="star-form">
+                        ${star}
+                    </div>
                 </div>
             </div>
         `;
@@ -198,9 +212,8 @@
         button.disabled = true;
         try {
             const fields = new FormData(projectForm);
-            const payload = Object.fromEntries([
-                'title', 'description', 'tech_stack', 'source', 'thumbnail',
-            ].map(name => [name, fields.get(name)]));
+            const payload = Object.fromEntries(projectFields.map(name =>
+                [name, fields.get(name)]));
             await writeProject(BASE_PROJECTS_ENDPOINT, 'POST', payload);
             projectForm.reset();
             document.getElementById('add-project-modal').hidePopover();
@@ -214,7 +227,29 @@
     }
     
     if (projectForm) projectForm.addEventListener('submit', addProject);
-    
+
+    async function editProject(event) {
+        event.preventDefault();
+        const button = editProjectForm.querySelector('button[type="submit"]');
+        button.disabled = true;
+        try {
+            const fields = new FormData(editProjectForm);
+            // get fields with prefix="edit"
+            const payload = Object.fromEntries(projectFields.map(name =>
+                [name, fields.get(`edit-${name}`)]));
+            await writeProject(editProjectForm.dataset.endpoint, 'PATCH', payload);
+            editProjectModal.hidePopover();
+            showToast('Success', 'Project updated.', 'success');
+            await fetchProjects(searchInput.value.trim());
+        } catch (error) {
+            showToast('Could not update project', error.message, 'error');
+        } finally {
+            button.disabled = false;
+        }
+    }
+
+    if (editProjectForm) editProjectForm.addEventListener('submit', editProject);
+
     gridContainer.addEventListener('click', async function(event) {
         const button = event.target.closest('button[data-action]');
         if (!button || button.disabled) return;
@@ -222,10 +257,23 @@
         if (action === 'delete' && !window.confirm('Delete this project?')) return;
         button.disabled = true;
         try {
+            if (action === 'update') {
+                const endpoint = projectEndpoint(DETAIL_PROJECT_ENDPOINT, button.dataset.id);
+                const project = await writeProject(endpoint, 'GET');
+                editProjectForm.dataset.endpoint = endpoint;
+                projectFields.forEach(name => {
+                    editProjectForm.elements.namedItem(`edit-${name}`).value = project[name] || '';
+                });
+                editProjectModal.showPopover();
+                return;
+            }
+
             const pattern = action === 'star' ? STAR_PROJECT_ENDPOINT : DETAIL_PROJECT_ENDPOINT;
             await writeProject(projectEndpoint(pattern, button.dataset.id),
                 action === 'star' ? 'POST' : 'DELETE');
-            showToast('Success', action === 'star' ? 'Star updated.' : 'Project deleted.', 'success');
+            showToast('Success',
+                        action === 'star' ? 'Star updated.' : 'Project deleted.',
+                    'success');
             await fetchProjects(searchInput.value.trim());
         } catch (error) {
             showToast('Request failed', error.message, 'error');

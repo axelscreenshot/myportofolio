@@ -22,14 +22,18 @@ Essay
 ## Week 10
 Django REST Framework Implementation
 
-**-- Disclaimer --** \
-Essay
+**-- Menggunakan AI --** \
+Karena model Project saya berbeda dengan yang di tutorial, saya jadi banyak mengedit fields-fields dan const terkait model tersebut di portofolio ini. Selain itu, karena tidak disuguhi dengan lengkap di tutorial mengenai pengeditan data, akhirnya saya membuat `project_edit_modal.html` berdasarkan modal _add project_. Saya mengimplementasikannya ke dalam kode js pada `projects.html` dengan bantuan Copilot, gpt-6-luna. Saya berikan prompt:
+```
+"Untuk perubahan data project via AJAX, `writeProject` bisa dipakai dengan method PATCH. Kembangkan form edit dengan pola modal tambah yang sama dengan menggunakan `project_edit_modal.html`. Jangan menghapus halaman/form update pada bagian lain yang sudah berfungsi. Pastikan Editor bisa update project.
+```
+Walau berjalan dengan baik, saya rasa prompting terlalu baik karena `tests_api.py` juga dilengkapi dengan test yang sesuai oleh Copilot, sehingga saya tidak mengetes secara manual.
 
-
-### Tugas X
+### Tugas 6
 1. ...
 2. ...
 3. ...
+4. ...
 
 
 ## Week 6
