@@ -855,13 +855,11 @@ select:open::picker-icon {
     grid-column: 1 / -1;
 }
 
-.goods-actions .star-form .button-star {
+.button-star {
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-.button-star {
+    align-items: center;
     gap: 0.4rem;
     color: var(--ink-dark);
     background: var(--accent-dark);

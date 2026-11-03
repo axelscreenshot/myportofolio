@@ -6,20 +6,33 @@ Kelas : PBP B
 Website: https://axel-sebastian-myportofolio.pws.cs.ui.ac.id
 
 
-<!-- ## Week 6
+<!-- ## Week X
 Topic
 
 **-- Disclaimer --** \
 Essay
 
 
-### Tugas 6
+### Tugas X
 1. ...
 2. ...
 3. ... -->
 
 
-## Week 5
+## Week 10
+Django REST Framework Implementation
+
+**-- Disclaimer --** \
+Essay
+
+
+### Tugas X
+1. ...
+2. ...
+3. ...
+
+
+## Week 6
 Web Interactivity with JavaScript
 
 **-- Tidak menggunakan AI --** \
@@ -32,7 +45,7 @@ Tidak ada perubahan yang terlalu signifikan di pekan ini, hanya memerlukan banya
 3. Cross-Site Scripting (XSS) adalah serangan berupa sisipan kode JavaScript oleh penyerang ke dalam halaman web yang kemudian dijalankan di browser pengguna lain. Template Django mencegah ini terjadi dengan melakukan auto-escaping pada setiap `{ variabel }`. Karakter seperti `<` dan `>` diubah menjadi `&lt;` dan `&gt;` sehingga browser menampilkannya sebagai teks biasa dan bukan sebagai tag HTML. Perlindungan itu hilang ketika data ditampilkan melalui AJAX/JavaScript karena data dari JSON disisipkan ke dalam template secara literal tanpa _escaping_, sehingga browser akan memperlakukan setiap tag HTML di dalam data sebagai kode sungguhan. Hal ini kita cegah dengan menambahkan fungsi _escaping_ sendiri dengan `escape.js`
 
 
-## Week 4
+## Week 5
 Authentication, Session and Cookies Implementation
 
 **-- [Menggunakan AI](https://share.gemini.google/RTbVSLwIk4OU) --** \
@@ -42,7 +55,7 @@ Versi ini mengimplementasikan fitur register dan login akun menggunakan sistem a
 ### ~~Tugas 4~~
 
 
-## Week 3
+## Week 4
 Form & Data Delivery
 
 **-- [Menggunakan AI](https://share.gemini.google/J4ojcP02MIS5) --** \
@@ -55,7 +68,7 @@ Awalnya saya mengira akan dapat mengerjakan bagian _update forms_ dengan menggun
 3. Di awal, ketika pengguna mengirimkan _request_ (contoh: api/projects/), `urls.py` mencocokkan rute tersebut dan mengarahkannya ke `get_projects_json()` di `views.py`. Di _view_, rekaman data `projects` kemudian diambil lalu diserialisasi menggunakan `serializers.serialize("json", projects)`. JSON tersebut lalu dibungkus ke dalam sebuah `HttpResponse` yang kemudian akan dikembalikan ke klien/browser/fungsi lain. _Serialization_ kita lakukan pada objek model guna menerjemahkan struktur datanya ke dalam format yang lebih mudah disimpan atau dikirimkan, seperti JSON.
 
 
-## Week 2
+## Week 3
 Implementasi Model-View-Template (MVT) pada Django
 
 **-- Tidak menggunakan AI --** \
@@ -68,7 +81,7 @@ Masih 0% dalam penggunaan AI, saya yang akhirnya sudah cukup nyaman dengan HTML 
 3. `makemigrations` berfungsi untuk menciptakan berkas migrasi, mendeskripsikan  _command-command_ SQL berdasarkan perubahan model yang telah kita lakukan. Ketika kita `migrate` lah baru _command_ tersebut dibaca dan data yang telah diubah lalu diaplikasikan ke dalam _database_. Sebagai contoh, model saya yang bernama "Projects" akan ditampilkan sebagai "Projectss" di halaman admin database Django akibat pluralisai otomatisnya. Oleh karena itu, saya ubah kembali nama model tersebut menjadi "Project". `makemigrations` kemudian akan menyusun perintah pengubahan nama tersebut dan kemudian akan dijalankan dan diimplementasi ke basis data setelah saya `migrate`. Akhirnya, model saya ditampilkan dengan nama "Projects" yang sesuai.
 
 
-## Week 1
+## Week 2
 Static Web with HTML5 and CSS3
 
 **-- Tidak menggunakan AI --** \
