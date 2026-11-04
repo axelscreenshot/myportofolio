@@ -29,11 +29,12 @@ Karena model Project saya berbeda dengan yang di tutorial, saya jadi banyak meng
 ```
 Walau berjalan dengan baik, saya rasa prompting terlalu baik karena `tests_api.py` juga dilengkapi dengan test yang sesuai oleh Copilot, sehingga saya tidak mengetes secara manual.
 
+
 ### Tugas 6
-1. ...
-2. ...
-3. ...
-4. ...
+1. REST (Representational State Transfer) adalah gaya arsitektur untuk merancang web API di mana data diperlakukan sebagai resource, HTTP method menyatakan tindakan, dan klien dan server bertukar representasi data. JSON hanyalah suatu representasi data, jadi jika sebuah API mengembalikan JSON tetapi tidak mengikuti gagasan REST yang sesuai maka tidak dapat disebut API RESTful. PUT digunakan untuk penggantian data total sementara PATCH untuk penggantian field tertentu saja. Contohnya, jika ingin merubah suatu profile user termasuk semua atributnya, maka gunakan PUT. Jika hanya ingin merubah judul suatu proyek tanpa merubah atributnya yang lain, gunakan PATCH.
+2. Serializer ditambahkan untuk representasi dan validasi data. Daripada merakit dictionary dalam perulangan dalam `views.py`, serializer dapat melakukannya dengan lebih fleksibel: Pada GET mengubah objek model menjadi tipe data python yang dapat dirender ke JSON, pada POST/PATCH mengubah input menjadi data yang sudah divalidasi dan disimpan dengan `is_valid(raise_exception=True)`.
+3. Seperti biasa, autentikasi berarti menanyakan siapa seseorang dan otorisasi menanyakan apa saaja yang orang tersebut bisa lakukan. Pada DRF, _authentication class_ mengisi `request.user`, setelah itu lalu _permission class_ memutuskan apakah _request_ boleh diteruskan. Menyembunyikan tombol di template hanya menghilangkannya dari tampilan halaman, sehingga akan tetap mudah dimanipulasi menggunakan developer tools dan/atau mengetik langsung url target yang tidak dilindungi.
+4. Memakai SessionAuthentication berarti status login user disimpan sebagai session cookie yang disimpan browser. Jika misalnya user yang sedang login di situs API diserang dan mendapatkan request yang berbahaya, API akan tetap menganggapnya valid dan lanjut memprosesnya karena browser otomatis menyertakan session cookie-nya. Token CSRF mencegah hal tersebut terjadi dengan mengasumsi penyerang tidak mengetahui token yang ada pada browser user. `force_authenticate()` mem-_bypass_ proses autentikasi biasa sehingga memudahkan pengetesan, tetapi penggunaannya berarti melewati semua tahap autentikasi bawaan, seperti pemeriksaan token CSRF oleh SessionAuthentication. Oleh karena itu, gunakan `client.login(username="...", password="...")` untuk memastikan semua tahap autentikasi dan otorisasi sesuai dengan alur yang sebenarnya.
 
 
 ## Week 6

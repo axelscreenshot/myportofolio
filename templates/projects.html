@@ -113,7 +113,7 @@
         article.className = 'goods-card';
 
         const image = project.thumbnail
-            ? `<img src="${escapeHtml(project.thumbnail)}" alt="${escapeHtml(project.title)}" class="goods-thumbnail">` : `<img src="/static/img/no-thumbnail.png" alt="No Thumbnail" class="goods-thumbnail">`;
+            ? `<img src="${escapeHtml(project.thumbnail)}" alt="Thumbnail of ${escapeHtml(project.title)}" class="goods-thumbnail">` : `<img src="/static/img/no-thumbnail.png" alt="No Thumbnail" class="goods-thumbnail">`;
 
         const view = project.view
             ? `<a title="View Project" href="${escapeHtml(project.view)}" class="goods-links" target="_blank">View</a>`
@@ -220,7 +220,7 @@
             showToast('Success', 'Project created.', 'success');
             await fetchProjects(searchInput.value.trim());
         } catch (error) {
-            showToast('Could not create project', error.message, 'error');
+            showToast('Could not create project!', error.message, 'error');
         } finally {
             button.disabled = false;
         }
@@ -242,7 +242,7 @@
             showToast('Success', 'Project updated.', 'success');
             await fetchProjects(searchInput.value.trim());
         } catch (error) {
-            showToast('Could not update project', error.message, 'error');
+            showToast('Could not update project!', error.message, 'error');
         } finally {
             button.disabled = false;
         }
@@ -276,7 +276,7 @@
                     'success');
             await fetchProjects(searchInput.value.trim());
         } catch (error) {
-            showToast('Request failed', error.message, 'error');
+            showToast('Request failed!', error.message, 'error');
         } finally {
             button.disabled = false;
         }

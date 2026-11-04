@@ -39,6 +39,7 @@ def show_experience(request):
         "title_query": title_query,
         "is_editor": is_editor,
         "form": ExperienceForm(),
+        "edit_form": ExperienceForm(prefix="edit"), # for js in experience.html
     }
     return render(request, "experience.html", context)
 
