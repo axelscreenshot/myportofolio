@@ -18,16 +18,16 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
+PRODUCTION = os.getenv('PRODUCTION', 'False').lower() in ('true', '1', 't')
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "axel-sebastian-myportofolio.pws.cs.ui.ac.id"
+    'localhost',
+    '127.0.0.1',
+    'axel-sebastian-myportofolio.pws.cs.ui.ac.id',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://axel-sebastian-myportofolio.pws.cs.ui.ac.id",
+    'https://axel-sebastian-myportofolio.pws.cs.ui.ac.id',
 ]
 
 CSRF_COOKIE_SECURE    = True
@@ -63,11 +63,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
+    'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken', # Add DRF's built-in authtoken app
+    'main',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # Add corsheaders.middleware.CorsMiddleware before CommonMiddleware
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,6 +80,20 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # Enable TokenAuthentication alongside SessionAuthentication
+        # so mobile clients use tokens while web pages keep using sessions
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+
+# Local development CORS settings for Flutter Web (Chrome)
+# Make sure to limit this on production, e.g.,
+# load CORS_ALLOW_ALL_ORIGINS value from .env set on the deployment environment
+CORS_ALLOW_ALL_ORIGINS = os.getenv('CORS_ALLOW_ALL_ORIGINS', str(not PRODUCTION)).lower() == 'true'
 
 ROOT_URLCONF = 'portofolio.urls'
 
@@ -158,11 +175,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 

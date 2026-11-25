@@ -1,15 +1,23 @@
 from django.shortcuts import get_object_or_404
+
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import (
-    api_view, authentication_classes, permission_classes,
-)
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from main.models import Project, Experience
 from main.permissions import IsPortfolioOwnerOrEditorOrReadOnly
 from main.serializers import ProjectSerializer, ExperienceSerializer
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def api_logout(request):
+    # Delete request.auth if it is not None, then return HTTP 204 No Content
+    if request.auth is not None:
+        request.auth.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(["GET", "HEAD", "POST"])
