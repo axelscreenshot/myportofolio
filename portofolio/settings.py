@@ -23,6 +23,7 @@ PRODUCTION = os.getenv('PRODUCTION', 'False').lower() in ('true', '1', 't')
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    '10.0.2.2',
     'axel-sebastian-myportofolio.pws.cs.ui.ac.id',
 ]
 
@@ -90,10 +91,18 @@ REST_FRAMEWORK = {
     ],
 }
 
-# Local development CORS settings for Flutter Web (Chrome)
-# Make sure to limit this on production, e.g.,
-# load CORS_ALLOW_ALL_ORIGINS value from .env set on the deployment environment
-CORS_ALLOW_ALL_ORIGINS = os.getenv('CORS_ALLOW_ALL_ORIGINS', str(not PRODUCTION)).lower() == 'true'
+# Local development CORS settings for Flutter Web (Chrome).
+# Uses the `PRODUCTION` flag from `.env` / `.env.prod` (Tutorial 00/01):
+# allow all origins locally (`PRODUCTION=False`), and restrict in production.
+# In production (.env.prod), set CORS_ALLOWED_ORIGINS="https://your-web-app.example"
+# (only needed if you host Flutter Web; native Android apps do not use CORS).
+CORS_ALLOW_ALL_ORIGINS = not PRODUCTION
+if PRODUCTION:
+    CORS_ALLOWED_ORIGINS = [
+        origin.strip()
+        for origin in os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
+        if origin.strip()
+    ]
 
 ROOT_URLCONF = 'portofolio.urls'
 
